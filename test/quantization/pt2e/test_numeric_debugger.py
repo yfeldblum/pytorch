@@ -27,6 +27,10 @@ from torch.testing._internal.common_utils import (
     skipIfCrossRef,
     TestCase,
 )
+from packaging import version
+
+if version.parse(torch.__version__) >= version.parse("2.8.0"):
+    torch._dynamo.config.cache_size_limit = 128
 
 
 @unittest.skipIf(IS_WINDOWS, "Windows not yet supported for torch.compile")
